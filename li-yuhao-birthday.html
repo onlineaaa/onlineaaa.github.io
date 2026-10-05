@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5efe3">
+<title>李芋豪，生日快乐！</title>
+<style>
+  :root { --ink:#29372f; --muted:#6f796f; --paper:#f5efe3; --orange:#f07b50; --yellow:#f7c95c; --green:#567965; --pink:#efb6a4; }
+  * { box-sizing:border-box }
+  body { margin:0; min-height:100vh; color:var(--ink); background:var(--paper); font-family:ui-rounded,"PingFang SC","Microsoft YaHei",system-ui,sans-serif; overflow-x:hidden }
+  body::before { content:""; position:fixed; inset:0; pointer-events:none; opacity:.28; background-image:radial-gradient(#8e8060 0.55px,transparent .55px); background-size:9px 9px; mask-image:linear-gradient(to bottom,black,transparent 80%); }
+  .page { width:min(1120px,calc(100% - 40px)); margin:auto; padding:28px 0 52px; position:relative }
+  header { display:flex; align-items:center; justify-content:space-between; font-size:12px; letter-spacing:.17em; color:var(--muted); text-transform:uppercase }
+  .brand { display:flex; gap:10px; align-items:center; font-weight:700; color:var(--ink) }
+  .brand-mark { display:grid; place-items:center; width:32px; height:32px; border-radius:50%; background:var(--yellow); font-size:18px; letter-spacing:0 }
+  .top-note { border:1px solid #d8cebb; padding:8px 13px; border-radius:99px; letter-spacing:.04em }
+  main { display:grid; grid-template-columns:1.02fr .98fr; align-items:center; gap:clamp(34px,7vw,96px); padding:clamp(48px,8vh,92px) 5.5% 52px }
+  .eyebrow { color:var(--orange); font-size:12px; letter-spacing:.22em; font-weight:800; text-transform:uppercase; display:flex; align-items:center; gap:10px }
+  .eyebrow::before { content:""; width:26px; height:2px; background:currentColor }
+  h1 { font-size:clamp(48px,7vw,88px); line-height:1.06; letter-spacing:-.065em; margin:22px 0 16px; font-weight:900 }
+  h1 span { display:block; color:var(--orange); font-family:Georgia,"Songti SC",serif; letter-spacing:-.045em; font-size:.83em; font-weight:500; font-style:italic }
+  .intro { max-width:420px; color:var(--muted); font-size:15px; line-height:1.9; margin:0 0 28px }
+  .actions { display:flex; flex-wrap:wrap; gap:11px }
+  button { font:inherit; border:0; cursor:pointer; transition:transform .18s ease,box-shadow .18s ease }
+  button:hover { transform:translateY(-2px) }
+  button:focus-visible { outline:3px solid #29372f; outline-offset:4px }
+  .primary { color:white; background:var(--green); border-radius:99px; padding:14px 20px; font-size:14px; font-weight:700; box-shadow:0 7px 0 #3c5a48 }
+  .primary:active { transform:translateY(3px); box-shadow:0 4px 0 #3c5a48 }
+  .secondary { color:var(--ink); background:transparent; border:1px solid #cfc5b1; border-radius:99px; padding:13px 18px; font-size:14px }
+  .photo-wrap { position:relative; max-width:400px; width:100%; justify-self:center; transform:rotate(2.3deg) }
+  .photo-wrap::before { content:""; position:absolute; inset:-16px 17px 17px -16px; border:1px solid #d5cbb8; border-radius:5px; transform:rotate(-5deg) }
+  .photo-card { padding:12px 12px 48px; background:#fffdf8; box-shadow:0 22px 48px #54452d22; position:relative }
+  .photo-card img { display:block; width:100%; aspect-ratio:4/5; object-fit:cover; object-position:52% 43%; filter:saturate(.86) }
+  .photo-caption { position:absolute; bottom:15px; left:0; right:0; text-align:center; color:#687267; font-family:Georgia,"Songti SC",serif; font-size:15px; letter-spacing:.03em }
+  .sticker { position:absolute; z-index:1; display:grid; place-items:center; border-radius:50%; box-shadow:0 8px 18px #54452d18 }
+  .sticker-star { width:66px; height:66px; background:var(--yellow); top:-28px; right:-26px; font-size:30px; transform:rotate(12deg) }
+  .sticker-tag { background:var(--pink); color:#633f36; font-size:11px; font-weight:800; letter-spacing:.06em; padding:13px 15px; bottom:35px; left:-42px; transform:rotate(-11deg) }
+  .wishes { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; padding:0 5.5% }
+  .wish { min-height:99px; border-top:1px solid #d8cebb; padding:14px 2px 0; color:var(--muted); font-size:13px; line-height:1.65 }
+  .wish strong { display:block; color:var(--ink); font-size:14px; margin-bottom:3px }
+  .wish .icon { margin-right:6px; color:var(--orange) }
+  footer { display:flex; align-items:center; justify-content:space-between; border-top:1px solid #d8cebb; margin:28px 5.5% 0; padding-top:16px; color:#859084; font-size:11px; letter-spacing:.08em }
+  .sparkle { position:fixed; z-index:5; pointer-events:none; animation:float 1.4s ease-out forwards; font-size:20px }
+  @keyframes float { 0% {opacity:0; transform:translateY(14px) scale(.5) rotate(0)} 20% {opacity:1} 100% {opacity:0; transform:translateY(-120px) scale(1.2) rotate(35deg)} }
+  .toast { position:fixed; z-index:8; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:#29372f; color:white; border-radius:99px; padding:12px 19px; font-size:14px; box-shadow:0 8px 25px #29372f35; transition:.3s; pointer-events:none; white-space:nowrap }
+  .toast.show { opacity:1; transform:translate(-50%,0) }
+  @media (max-width:720px) {
+    .page { width:min(100% - 30px,520px); padding-top:18px }
+    header { font-size:10px }.top-note { padding:7px 10px }
+    main { grid-template-columns:1fr; gap:36px; padding:56px 3% 40px }
+    .copy { text-align:center }.eyebrow { justify-content:center } .eyebrow::before { display:none }
+    h1 { margin:18px 0 12px; font-size:clamp(54px,15vw,78px) }
+    .intro { margin:0 auto 23px; max-width:360px; font-size:14px }
+    .actions { justify-content:center }
+    .photo-wrap { width:min(76%,330px); margin:8px auto 4px }
+    .sticker-star { right:-20px; top:-23px; width:56px; height:56px }
+    .sticker-tag { left:-30px }
+    .wishes { padding:0 3%; gap:9px }.wish { font-size:12px; min-height:112px }.wish strong {font-size:13px}
+    footer { margin:23px 3% 0 }
+  }
+  @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation-duration:.01ms!important; transition-duration:.01ms!important } }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="brand"><span class="brand-mark">✳</span> A LITTLE PARTY</div>
+    <div class="top-note">给今天的主角 · 李芋豪</div>
+  </header>
+  <main>
+    <section class="copy">
+      <div class="eyebrow">A DAY MADE FOR YOU</div>
+      <h1>生日快乐<span>李芋豪！</span></h1>
+      <p class="intro">今天的快乐请加满，烦恼请暂时静音。愿新的一岁，有好吃的、好玩的、好天气，还有很多很多值得期待的事。</p>
+      <div class="actions">
+        <button class="primary" id="wishBtn">点我收下祝福 ✦</button>
+        <button class="secondary" id="photoBtn">再看一眼主角 ↗</button>
+      </div>
+    </section>
+    <div class="photo-wrap" id="photo">
+      <div class="sticker sticker-star">✦</div>
+      <div class="sticker sticker-tag">TODAY<br>IS YOURS</div>
+      <div class="photo-card">
+        <img src="li-yuhao.png" alt="李芋豪的照片">
+        <div class="photo-caption">主角登场 · 请保持闪耀</div>
+      </div>
+    </div>
+  </main>
+  <section class="wishes" aria-label="生日祝福">
+    <div class="wish"><strong><span class="icon">01 /</span> 天天好心情</strong>把快乐装进口袋，随时拿出来用。</div>
+    <div class="wish"><strong><span class="icon">02 /</span> 好运常在线</strong>想做的事顺顺利利，惊喜不期而遇。</div>
+    <div class="wish"><strong><span class="icon">03 /</span> 永远有新鲜感</strong>去喜欢的地方，见喜欢的人。</div>
+  </section>
+  <footer><span>MADE WITH ♥ FOR LI YUHAO</span><span>新的一岁，请继续发光</span></footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite">祝福已送达！愿你新的一岁闪闪发光 ✨</div>
+<script>
+  const wishBtn = document.querySelector('#wishBtn');
+  const photoBtn = document.querySelector('#photoBtn');
+  const toast = document.querySelector('#toast');
+  let toastTimer;
+  function confetti() {
+    const bits = ['✦','✧','♥','✺','●'];
+    const colors = ['#f07b50','#f7c95c','#567965','#efb6a4','#7785a6'];
+    for (let i=0; i<34; i++) {
+      const bit = document.createElement('span');
+      bit.className = 'sparkle';
+      bit.textContent = bits[Math.floor(Math.random()*bits.length)];
+      bit.style.left = (8 + Math.random()*84) + 'vw';
+      bit.style.top = (40 + Math.random()*45) + 'vh';
+      bit.style.color = colors[Math.floor(Math.random()*colors.length)];
+      bit.style.animationDelay = (Math.random()*.45) + 's';
+      document.body.appendChild(bit);
+      setTimeout(() => bit.remove(), 1900);
+    }
+  }
+  wishBtn.addEventListener('click', () => {
+    confetti();
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
+  });
+  photoBtn.addEventListener('click', () => {
+    document.querySelector('#photo').scrollIntoView({behavior:'smooth',block:'center'});
+    document.querySelector('#photo').animate([{transform:'rotate(2.3deg) scale(1)'},{transform:'rotate(-1deg) scale(1.045)'},{transform:'rotate(2.3deg) scale(1)'}],{duration:650,easing:'ease-out'});
+  });
+</script>
+</body>
+</html>
